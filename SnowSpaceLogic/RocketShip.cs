@@ -2,18 +2,65 @@
 
 public class RocketShip
 {
-    public readonly string Name;
+    private string name;
+    private int numberOfFins;
 
-    public RocketShip(string Name)
+    public RocketShip(string name)
     {
-        this.Name = Name;
+
+        SetName(name);
+    }
+
+    public void SetNumberOfFins(int numFins)
+    {
+        if(numFins >= 0)
+        {
+          numberOfFins = numFins;  
+        }
+        
+    }
+
+public int GetNumberOfFins()
+    {
+        return numberOfFins;
+    }
+
+    public void SetName(string newName)
+    {
+        if (newName == null)
+        {
+            throw new Exception("new name cannot be null");
+        }
+
+        if (hasNoNumber(newName))
+        {
+            throw new Exception("Name must have a number");
+        }
+        name = newName;
+    }
+
+    bool hasNoNumber(string s)
+    {
+        int index = 0;
+        while (s.Length >= index)
+            if (char.IsDigit(s[index]))
+            {
+                return false;
+            }
+        index++;
+    
+        return true;
+    }
+    public string GetName()
+    {
+        return name;
     }
     public string TakeOff()
     {
-        if (Name == "Doomed")
+        if (name == "Doomed1")
         {
             return "Boom!";
         }
-        return $"{Name}shhhsjdfkjskldjf";
+        return $"{name}shhhsjdfkjskldjf";
     }
 }
